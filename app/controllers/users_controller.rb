@@ -26,6 +26,7 @@ class UsersController < ApplicationController
       redirect_to edit_user_path
     else
       render :edit, status: :unprocessable_entity
+    end
   end
 
   private
