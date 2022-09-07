@@ -1,23 +1,29 @@
 <h1>Update <%= @user.username.titleize %>'s Information: </h1>
 
 <%= form_with model: @user do |form| %>
+  <ul>
+    <% @user.errors.full_messages_for(:username).each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    <% @user.errors.full_messages_for(:email).each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    <% @user.errors.full_messages_for(:password).each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+
   <%= form.label :username, "Edit Username: " %>
   <%= form.text_field :username, value: @user.username %>
-  <% @user.errors.full_messages_for(:username).each do |message| %>
-    <div><%= message %></div>
-  <% end %>
   <br><br>
+
   <%= form.label :email, "Edit Email: " %>
   <%= form.email_field :email, value: @user.email %>
-  <% @user.errors.full_messages_for(:email).each do |message| %>
-    <div><%= message %></div>
-  <% end %>
   <br><br>
+
   <%= form.label :password, "Edit Password: " %>
   <%= form.password_field :password, value: @user.password %>
-  <% @user.errors.full_messages_for(:password).each do |message| %>
-    <div><%= message %></div>
-  <% end %>
   <br><br>
+  
   <%= form.submit %>
 <% end %>
